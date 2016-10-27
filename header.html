@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- This website was designed and created by Nick Phillips, as part of the assessment criteria for COMSM0010 Cloud Computing at the University of Bristol -->
+<html>
+<head>
+  <meta property="og:url"         content="http://www.spotmybands.com/" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="SpotMyBands" />
+  <meta property="og:description" content="The easy way to find live music events for the bands you listen to." />
+  <meta property="og:image"       content="http://www.spotmybands.com/images/spotmybands.png" />
+
+  <title>SpotMyBands - The easy way to find live music events for the bands you listen to.</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  {% if current_page == "main" %}
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{google_api_key}}"></script>
+  <script type="text/javascript" src="js/google_maps_gen.js"></script>
+  {% endif %}
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <ul class="nav nav-pills pull-right text-center">
+        {% if current_page != "welcome" %}
+        <li><a href="/">Logout</a></li>
+        {% endif %}
+      </ul>
+      <div class="site-name">
+        <img id="header-logo" style="width:35px;" src="images/logo-light.png"/>
+        SpotMyBands
+      </div>
+    </div>
+  </div>
+  <div id="mainbody">

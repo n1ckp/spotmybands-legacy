@@ -1,0 +1,4 @@
+cron:
+- description: remove old artist data
+  url: /datastore_check
+  schedule: every 12 hours

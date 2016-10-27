@@ -1,0 +1,11 @@
+# Python
+*.pyc
+
+# OSX
+*.DS_Store
+
+# Preprocessing
+.sass-cache/
+
+# keys file
+keys.json

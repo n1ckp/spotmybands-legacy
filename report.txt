@@ -1,0 +1,32 @@
+# Limiting API calls
+My application's main drain on resources is API calls. Since I have a limited amount of calls for my quota on Google App engine, I needed to implement methods of reducing the number of API calls from my application. The solution I found was to use Memcache for caching data which would likely be reaccessed. For Spotify API calls, according to its terms of use, I could only cache a user's data for the duration of the user's time using the application. However, I can cache metadata such as artists' names. For Songkick API calls, I may retain local copies of data for 'short periods', which they specify as "hours, not days". I interpret this as meaning that I may keep the data cached for no longer than 24 hours.
+
+For Spotify, I decided that I will cache data which links the user to the artists, but only for the duration that they are logged in and authenticated with the application. For Songkick, I decided that I will maintain data entries for artists and their respective upcoming events, for periods no longer than 24 hours. If an artist is listed as being viewed by a user, and its cache timeout is almost over, then I will re-send an API request to refresh the artist-event data. If no more accesses are made in 24 hours, the data entry is deleted from the Cloud Datastore. This method of caching will help to quickly deliver responses for artists that are more commonly listened to, and drastically reduce the number of API calls made. In turn, this will help to keep down the cost of running a scalable web service.
+
+Even though memcache is much faster in data retrieval than Datastore, one possible downfall in using memcache is that storage is not guaranteed and varies in size. If the memcache is deemed full by Google's systems, then newer entries added to memcache will replace oldest entries.
+
+
+# Generating Google Maps markers
+Since generating the Google Map is implemented on the client-side, I needed to figure out a way of passing values from the templated data to Javascript. After initially thinking about using Google Datastore, I realised I could pass the event data via a document object which is hidden to the user, and readonly to prevent unwanted data injection.
+
+
+# Getting sessions working in webapp2
+This was not trivial as expected. The main issue was me not explicitly setting the 'backend' parameter for self.session_store.get_session() to "memcache". "securecookie" did not work for me, and would not allow persistent session variables to be accessed between request handlers.
+
+# Use of AJAX for displaying the map
+used because of long waits while requests are made to spotify and songkick apis
+
+# Loading image
+Obtained from http://www.ajaxload.info/
+
+# Structure of data
+artist = {
+    "name" : STRING,
+    "displayName" : STRING,
+    "shown" : BOOL,
+    "id" : INT,
+    "events" : [event,event,event,...],
+    "hasEvents" : BOOL
+}
+
+artists = [artist,artist,artist,...]

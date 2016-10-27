@@ -1,0 +1,212 @@
+@import "mixins.sass"
+
+$theme-light: #e4e4e4
+$theme-dark: #000E51
+$theme-text-light: white
+$theme-text-dark: #00244f
+
+$theme-bg: #EFF2FF
+
+html, body
+  height: 100%
+
+body
+  background-color: $theme-bg
+  font-family: 'Open Sans', sans-serif
+
+/* Bootstrap tweaks */
+.row, .col
+  padding: 0
+  margin: 0
+
+/* Buttons */
+.button-primary-dark
+  background-color: $theme-dark
+  color: $theme-light
+  &:hover
+    background-color: fade-out($theme-dark, 0.5)
+    color: $theme-light
+
+a
+  @include button-transition()
+  cursor: pointer
+  padding: 15px
+  font-size: 16px
+  text-transform: uppercase
+  font-weight: bold
+  text-decoration: none
+  &:hover
+    text-decoration: none
+
+
+
+/* Header */
+$header-height: 50px
+.header
+  position: absolute
+  z-index: 100
+  width: 100%
+  background-color: $theme-dark
+  color: $theme-light
+  height: $header-height
+  @include shadowing()
+  .site-name
+    padding: 10px
+    color: $theme-light
+    font-size: 20px
+
+  .container
+    .nav > li > a
+      @include button-transition()
+      height: $header-height
+      background-color: $theme-dark
+      color: $theme-light
+      border-radius: 0px
+      font-weight: bold
+      font-size: 14px
+      width: 100px
+      &:hover
+        padding: 15px
+        height: $header-height + 5px
+
+/* Footer */
+$footer-height: 80px
+.footer
+  @include shadowing()
+  background-color: white
+  color: fade-out($theme-dark, 0.5)
+  padding-top: 20px
+
+  position: absolute
+  height: $footer-height
+  width: 100%
+  bottom: 0px
+
+  p
+    float: left
+  #tech-logos
+    img
+      max-width: 150px
+      margin-left: 40px
+    @media screen and (max-width: 1200px)
+      img
+        width: 80px
+      p
+        font-size: 10px
+  #copyr
+    float: right
+    font-size: 16px
+    div
+      float: right
+    a
+      @include button-transition()
+      color: fade-out($theme-dark, 0.5)
+      &:hover
+        color: $theme-dark
+    @media screen and (max-width: 1200px)
+      font-size: 12px
+
+#mainbody
+  height: 100%
+  padding-top: $header-height
+  padding-bottom: $footer-height
+
+/* Welcome Page
+ */
+#welcome-text
+  @include shadowing()
+  position: relative
+  top: 30%
+  transform: translateY(-50%)
+  padding-bottom: 70px
+  padding-top: 50px
+
+#soc-med
+  padding-top: 50px
+  width: 30%
+  margin-left: auto
+  margin-right: auto
+
+#panel-search, #panel-map
+  height: 100%
+
+#panel-search
+  padding: 20px
+
+#panel-map
+  padding: 0px
+  #map
+    display: block
+    height: 90%
+    width: 100%
+
+  #map-key
+    height: 10%
+
+#map-loading
+  display: block
+  margin-left: auto
+  margin-right: auto
+  width: 600px
+
+.marker
+  background-color: fade-out($theme-dark, 0.6)
+  color: $theme-light
+  display: inline-block
+  width: 13%
+  font-size: 8pt
+  padding: 5px
+  img
+    display: block
+    float: left
+    margin-right: 20px
+
+/* Artists panel */
+.lbl
+  float: right
+
+.artist-name
+  clear: none
+  display: inline-block
+  margin: 5px
+  padding: 10px
+  color: $theme-light
+  cursor: pointer
+  @include button-transition()
+
+$artists-table-height: 80%
+#artists-table
+  overflow-y: scroll
+  height: $artists-table-height
+  @include shadowing()
+  span
+    @extend .artist-name
+
+#artists-search-ctrls
+  height: 100% - $artists-table-height
+  span
+    @extend .artist-name
+    cursor: default
+
+$artist-col-notshown: #6B6B6B
+$artist-col-shown: #00940A
+$artist-col-noevents: #DB4C4C
+
+.artist_notshown
+  background-color: $artist-col-notshown
+  &:hover
+    background-color: fade-out($artist-col-notshown, 0.2)
+
+.artist_shown
+  background-color: $artist-col-shown
+  &:hover
+    background-color: fade-out($artist-col-shown, 0.2)
+
+.artist_noevents
+  background-color: $artist-col-noevents
+  &:hover
+    background-color: fade-out($artist-col-noevents, 0.2)
+
+.artists-button
+  display: inline-block
+  width: 100%

@@ -1,0 +1,77 @@
+{% include 'header.html' %}
+<div id="panel-search" class="col-md-6">
+  <div id="artists-search-ctrls">
+    <div class="row">
+      <div class="col-xs-2">
+        <b class="lbl">Spotify ID: </b>
+      </div>
+      <div class="col-xs-9">
+        {{ username }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <b class="lbl">Artists Key: </b>
+      </div>
+      <div class="col-xs-9">
+        <span class="artist_notshown no-click">Events not shown</span>
+        <span class="artist_shown no-click">Events shown</span>
+        <span class="artist_noevents no-click">No upcoming events</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3">
+        <a id="but_showAllEvents" class="button-primary-dark artists-button text-center">Show all events</a>
+      </div>
+      <div class="col-xs-3">
+        <a id="but_hideAllEvents" class="button-primary-dark artists-button text-center">Hide all events</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="artists-table" class="col-xs-12"></div>
+</div>
+
+<div id="panel-map" class="col-xs-12 col-md-6">
+  <div id="map">
+      <div id="map-loading">
+          <p>Loading map. Please wait.</p>
+          <img id="map-loading-img" src="images/ajax-loader.gif"/>
+      </div>
+  </div>
+  <div id="map-key">
+    <div class="marker">
+        <img src="images/marker_lte1w.png"/>
+        <p>&lt;= 1 week</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_lte2w.png"/>
+        <p>&lt;= 2 weeks</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_lte1m.png"/>
+        <p>&lt;= 1 month</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_lte2m.png"/>
+        <p>&lt;= 2 months</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_lte6m.png"/>
+        <p>&lt;= 6 months</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_mt6m.png"/>
+        <p>&gt; 6 months</p>
+    </div>
+    <div class="marker">
+        <img src="images/marker_unknown.png"/>
+        <p>No date</p>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
